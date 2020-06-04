@@ -10,4 +10,18 @@ Stage: builder
     yum install -y fftw-devel
     cd /code/example
     make CXXFLAGS=-lfftw3 example
-    ./example | diff example.test-output -
+    ./example | diff example.test-output - >/dev/null
+
+
+Bootstrap: localimage
+From: images/base.sif
+Stage: runtime
+
+%files from builder
+    /code/example/example              /code/example/example
+    /code/example/example.test-output  /code/example/example.test-output
+
+%post
+    yum install -y fftw
+    cd /code/example
+    ./example | diff example.test-output - >/dev/null
