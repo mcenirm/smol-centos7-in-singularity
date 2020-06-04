@@ -1,0 +1,13 @@
+Bootstrap: localimage
+From: images/builder.sif
+Stage: builder
+
+%files
+    example.cpp          /code/example/example.cpp
+    example.test-output  /code/example/example.test-output
+
+%post
+    yum install -y fftw-devel
+    cd /code/example
+    make example
+    ./example | diff example.test-output -
