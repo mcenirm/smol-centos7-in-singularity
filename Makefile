@@ -9,7 +9,7 @@ all : $(IMAGES)
 images/%.sif : %.def
 	if [[ "$<" == remote-* ]] ; \
 	then singularity build --force --remote $@ $< ; \
-	else singularity build --force --no-cleanup --fakeroot $@ $< ; \
+	else singularity build --force --fakeroot $@ $< ; \
 	fi
 
 $(IMAGES) : | images
