@@ -1,0 +1,5 @@
+Bootstrap: localimage
+From: images/base.sif
+
+%post
+    yum clean all
