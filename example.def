@@ -9,5 +9,5 @@ Stage: builder
 %post
     yum install -y fftw-devel
     cd /code/example
-    make example
+    make CXXFLAGS=-lfftw3 example
     ./example | diff example.test-output -
