@@ -18,8 +18,8 @@ From: images/base.sif
 Stage: runtime
 
 %files from builder
-    /code/example/example              /code/example/example
-    /code/example/example.test-output  /code/example/example.test-output
+    /code/example/example
+    /code/example/example.test-output
 
 %post
     yum install -y fftw
