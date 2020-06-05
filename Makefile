@@ -2,7 +2,7 @@ DEFS := $(wildcard *.def)
 IMAGES := $(DEFS:%.def=images/%.sif)
 MKS := $(DEFS:%.def=%.mk)
 
-all : $(IMAGES)
+all : $(IMAGES) README.md
 
 -include $(MKS)
 
@@ -19,3 +19,8 @@ images :
 
 %.mk : %.def Makefile
 	sed -n -e 's#^From: \(images/.*\.sif\)#$(@:%.mk=images/%.sif) : \1#p' $< > $@
+
+README.md : $(DEFS)
+	echo '```' > $@
+	du -hs images/centos-7-*.sif >> $@
+	echo '```' >> $@
